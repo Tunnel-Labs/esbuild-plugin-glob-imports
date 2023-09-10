@@ -31,11 +31,8 @@ const globImportsPlugin = {
       (args) => {
         const globfileContents = getGlobfileContents({
           globfilePath: args.path,
-          // Parcel does not support absolute filepath imports
           filepathType: "relative",
         });
-
-        console.log(globfileContents);
 
         return {
           contents: globfileContents,
