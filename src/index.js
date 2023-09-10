@@ -2,7 +2,7 @@ import { createGlobfileManager } from "glob-imports";
 import { getMonorepoDirpath } from "get-monorepo-root";
 
 /** @type {import('bun').BunPlugin} */
-const globfilePlugin = {
+const globImportsPlugin = {
   name: "bun-plugin-glob-imports",
   setup(build) {
     const monorepoDirpath = getMonorepoDirpath(__dirname);
@@ -46,4 +46,4 @@ const globfilePlugin = {
   },
 };
 
-export default globfilePlugin;
+export default globImportsPlugin;
