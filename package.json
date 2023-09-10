@@ -2,7 +2,7 @@
 	"name": "bun-plugin-glob-imports",
 	"type": "module",
 	"dependencies": {
-		"get-monorepo-root": "^1.0.1",
+		"get-monorepo-root": "^1.1.0",
 		"glob-imports": "^3.0.0"
 	},
 	"devDependencies": {

@@ -14,27 +14,32 @@ const globfilePlugin = {
       monorepoDirpath,
     });
 
-    build.onResolve({ filter: /^glob(?:\[[^\]]+])?:/ }, (args) => ({
-      path: args.path,
-      namespace: "glob-imports",
-    }));
+    build.onResolve({ filter: /^glob(?:\[[^\]]+])?:/ }, (args) => {
+      const globfilePath = getGlobfilePath({
+        globfileModuleSpecifier: args.path,
+        importerFilepath: args.importer,
+      });
+
+      return {
+        path: globfilePath,
+        namespace: "glob-imports",
+      };
+    });
 
     build.onLoad(
-      { filter: /^glob(?:\[[^\]]+])?:/, namespace: "glob-imports" },
-      () => {
-        const globfilePath = getGlobfilePath({
-          globfileModuleSpecifier: specifier,
-          importerFilepath: dependency.resolveFrom,
-        });
+      { filter: /\/__virtual__:.*$/, namespace: "glob-imports" },
+      (args) => {
         const globfileContents = getGlobfileContents({
-          globfilePath,
+          globfilePath: args.path,
           // Parcel does not support absolute filepath imports
           filepathType: "relative",
         });
 
+        console.log(globfileContents);
+
         return {
           contents: globfileContents,
-          loader: "js",
+          loader: args.loader,
         };
       }
     );
