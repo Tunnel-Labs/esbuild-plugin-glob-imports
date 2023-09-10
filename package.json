@@ -1,13 +1,13 @@
 {
 	"name": "bun-plugin-glob-imports",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"type": "module",
 	"exports": "./src/index.js",
 	"dependencies": {
-		"get-monorepo-root": "^1.1.0",
 		"glob-imports": "^3.0.0"
 	},
 	"devDependencies": {
+		"get-monorepo-root": "^1.1.0",
 		"bun": "^1.0.0"
 	},
 	"files": [

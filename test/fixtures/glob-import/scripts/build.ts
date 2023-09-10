@@ -1,8 +1,11 @@
-import globfilePlugin from "../../../../src/index.js";
+import globImportsPlugin from "../../../../src/index.js";
+import { getMonorepoDirpath } from "get-monorepo-root";
 import Bun from "bun";
 
 Bun.build({
   entrypoints: ["../src/index.ts"],
   outdir: "../dist",
-  plugins: [globfilePlugin],
+  plugins: [
+    globImportsPlugin({ monorepoDirpath: getMonorepoDirpath(__dirname) }),
+  ],
 });
