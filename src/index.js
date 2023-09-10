@@ -1,4 +1,4 @@
-import { createGlobfileManager, isGlobSpecifier } from "glob-imports";
+import { createGlobfileManager } from "glob-imports";
 import { getMonorepoDirpath } from "get-monorepo-root";
 
 /** @type {import('bun').BunPlugin} */

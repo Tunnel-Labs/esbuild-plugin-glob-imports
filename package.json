@@ -1,6 +1,7 @@
 {
 	"name": "bun-plugin-glob-imports",
 	"type": "module",
+	"exports": "./src/index.js",
 	"dependencies": {
 		"get-monorepo-root": "^1.1.0",
 		"glob-imports": "^3.0.0"
@@ -8,5 +9,9 @@
 	"devDependencies": {
 		"bun": "^1.0.0"
 	},
+	"files": [
+		"readme.md",
+		"src/index.js"
+	],
 	"workspaces": []
 }
