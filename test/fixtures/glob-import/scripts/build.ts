@@ -1,8 +1,8 @@
 import globImportsPlugin from "../../../../src/index.js";
 import { getMonorepoDirpath } from "get-monorepo-root";
-import Bun from "bun";
+import esbuild from "esbuild";
 
-Bun.build({
+esbuild.build({
   entrypoints: ["../src/index.ts"],
   outdir: "../dist",
   plugins: [

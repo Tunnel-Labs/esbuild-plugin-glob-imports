@@ -1,13 +1,13 @@
 import { createGlobfileManager } from "glob-imports";
 
-/** @type {import('bun').BunPlugin} */
+/** @type {import('esbuild').esbuildPlugin} */
 export default function globImportsPlugin({ monorepoDirpath }) {
   const { getGlobfileContents, getGlobfilePath } = createGlobfileManager({
     monorepoDirpath,
   });
 
   return {
-    name: "bun-plugin-glob-imports",
+    name: "esbuild-plugin-glob-imports",
     setup(build) {
       build.onResolve({ filter: /^glob(?:\[[^\]]+])?:/ }, (args) => {
         const globfilePath = getGlobfilePath({

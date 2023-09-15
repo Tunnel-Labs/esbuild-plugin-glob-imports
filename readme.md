@@ -1,1 +1,1 @@
-# bun-plugin-glob-imports
+# esbuild-plugin-glob-imports
