@@ -1,43 +1,43 @@
-import { createGlobfileManager } from "glob-imports";
+import { createGlobfileManager } from 'glob-imports';
 
 /** @type {import('esbuild').esbuildPlugin} */
 export default function globImportsPlugin({ monorepoDirpath }) {
-  const { getGlobfileContents, getGlobfilePath } = createGlobfileManager({
-    monorepoDirpath,
-  });
+	const { getGlobfileContents, getGlobfilePath } = createGlobfileManager({
+		monorepoDirpath
+	});
 
-  return {
-    name: "esbuild-plugin-glob-imports",
-    setup(build) {
-      build.onResolve({ filter: /^glob(?:\[[^\]]+])?:/ }, (args) => {
-        const globfilePath = getGlobfilePath({
-          globfileModuleSpecifier: args.path,
-          importerFilepath: args.importer,
-        });
+	return {
+		name: 'esbuild-plugin-glob-imports',
+		setup(build) {
+			build.onResolve({ filter: /^glob(?:\[[^\]]+])?:/ }, (args) => {
+				const globfilePath = getGlobfilePath({
+					globfileModuleSpecifier: args.path,
+					importerFilepath: args.importer
+				});
 
-				console.log(args)
+				console.log(args);
 
-        return {
-          path: globfilePath,
-          namespace: "glob-imports",
-        };
-      });
+				return {
+					path: globfilePath,
+					namespace: 'glob-imports'
+				};
+			});
 
-      build.onLoad(
-        { filter: /\/__virtual__:.*$/, namespace: "glob-imports" },
-        (args) => {
-          const globfileContents = getGlobfileContents({
-            globfilePath: args.path,
-            filepathType: "absolute",
-          });
+			build.onLoad(
+				{ filter: /\/__virtual__:.*$/, namespace: 'glob-imports' },
+				(args) => {
+					const globfileContents = getGlobfileContents({
+						globfilePath: args.path,
+						filepathType: 'absolute'
+					});
 
-          return {
-            contents: globfileContents,
+					return {
+						contents: globfileContents,
 						resolveDir: monorepoDirpath,
-            loader: args.loader,
-          };
-        }
-      );
-    },
-  };
+						loader: args.loader
+					};
+				}
+			);
+		}
+	};
 }

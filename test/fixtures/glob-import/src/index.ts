@@ -1,1 +1,1 @@
-export * from 'glob:./!(index).ts'
+export * from 'glob:./!(index).ts';
