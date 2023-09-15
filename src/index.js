@@ -15,8 +15,6 @@ export default function globImportsPlugin({ monorepoDirpath }) {
 					importerFilepath: args.importer
 				});
 
-				console.log(args);
-
 				return {
 					path: globfilePath,
 					namespace: 'glob-imports'
