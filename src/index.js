@@ -15,6 +15,8 @@ export default function globImportsPlugin({ monorepoDirpath }) {
           importerFilepath: args.importer,
         });
 
+				console.log(args)
+
         return {
           path: globfilePath,
           namespace: "glob-imports",
@@ -26,11 +28,12 @@ export default function globImportsPlugin({ monorepoDirpath }) {
         (args) => {
           const globfileContents = getGlobfileContents({
             globfilePath: args.path,
-            filepathType: "relative",
+            filepathType: "absolute",
           });
 
           return {
             contents: globfileContents,
+						resolveDir: monorepoDirpath,
             loader: args.loader,
           };
         }
